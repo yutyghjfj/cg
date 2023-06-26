@@ -1,0 +1,180 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+  </head>
+<body>
+ <script>
+      // ページの読み込みを待つ
+      window.addEventListener('DOMContentLoaded', init);
+
+
+      function init() {
+        // サイズを指定
+        const width = 800
+        const height = 600;
+
+
+        // レンダラーを作成
+        var renderer = new THREE.WebGLRenderer();
+        document.body.appendChild(renderer.domElement);
+        renderer.setSize(width, height);
+
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+        // カメラの初期座標を設定
+        camera.position.set(0, 0, 10);
+
+
+        // カメラコントローラーを作成
+        const controls = new THREE.OrbitControls(camera, document.body);
+       
+        // 平行光源1
+        var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+        directionalLight1.position.set(10, 20, 10);
+        // シーンに追加
+        scene.add(directionalLight1);
+        // 平行光源2
+        var directionalLight2 = new THREE.DirectionalLight(0x888888);
+        directionalLight2.position.set(-10, -10, 10);
+        // シーンに追加
+        scene.add(directionalLight2);
+
+
+        // helper
+        const gridHelper = new THREE.GridHelper(2,10); // size, step
+        scene.add(gridHelper);
+        const axisHelper = new THREE.AxisHelper(5); //軸の長さ　X：赤、Y：緑、z：青
+        scene.add(axisHelper);
+
+
+        // 平面を作成
+        var planeGeometry = new THREE.PlaneGeometry(5,5,10,10); //縦、横、分割数、分割数
+        var planeMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var plane = new THREE.Mesh(planeGeometry,planeMaterial);
+        plane.rotation.set( -Math.PI/2, 0, 0 );
+        plane.position.set(0,0,0);
+        scene.add(plane);
+
+
+        // 机の板を作成
+        var deskGeometry = new THREE.BoxGeometry(2, 2.5, 0.125);
+        var deskMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+        var desk = new THREE.Mesh(deskGeometry, deskMaterial);
+        desk.castShadow = true; //影ができる
+        desk.rotation.set( -Math.PI/2, 0, 0 );
+        desk.position.set(0,1,0);
+        scene.add(desk);
+
+
+        //机の右後ろ脚
+        var deskGeometry = new THREE.CylinderGeometry( 0.125, 0.125, 1, 32 );
+        //上の底面の半径、下の底面の半径、高さ、何角柱か
+        var deskMaterial = new THREE.MeshPhongMaterial( {color: 0xffffff} );
+        var desk = new THREE.Mesh( deskGeometry, deskMaterial );
+        desk.position.set( -0.75, 0.5, -0.8 );
+        scene.add( desk );
+
+
+        //机の左後ろ脚
+        var deskGeometry = new THREE.CylinderGeometry( 0.125, 0.125, 1, 32 );
+        //上の底面の半径、下の底面の半径、高さ、何角柱か
+        var deskMaterial = new THREE.MeshPhongMaterial( {color: 0xffffff} );
+        var desk = new THREE.Mesh( deskGeometry, deskMaterial );
+        desk.position.set( -0.75, 0.5, 0.8 );
+        scene.add( desk );
+
+
+        //机の右前脚
+        var deskGeometry = new THREE.CylinderGeometry( 0.125, 0.125, 1, 32 );
+        //上の底面の半径、下の底面の半径、高さ、何角柱か
+        var deskMaterial = new THREE.MeshPhongMaterial( {color: 0xffffff} );
+        var desk = new THREE.Mesh( deskGeometry, deskMaterial );
+        desk.position.set( 0.75, 0.5, -0.8 );
+        scene.add( desk );
+
+
+        //机の左前脚
+        var deskGeometry = new THREE.CylinderGeometry( 0.125, 0.125, 1, 32 );
+        //上の底面の半径、下の底面の半径、高さ、何角柱か
+        var deskMaterial = new THREE.MeshPhongMaterial( {color: 0xffffff} );
+        var desk = new THREE.Mesh( deskGeometry, deskMaterial );
+        desk.position.set( 0.75, 0.5, 0.8 );
+        scene.add( desk );
+
+
+        //ソファー
+        var sofaGeometry = new THREE.SphereGeometry( 0.25,32, 32 );
+        var sofaMaterial = new THREE.MeshPhongMaterial( {color: 0x808080} );
+        var sofa = new THREE.Mesh( sofaGeometry, sofaMaterial );
+        sofa.scale.z = 4;
+        sofa.scale.x = 3;
+        sofa.scale.y = 1;
+        sofa.position.set( -1.7, 0.15, 0.15 );
+        scene.add( sofa );
+
+
+        //ソファーの背もたれ
+        var sofaGeometry = new THREE.SphereGeometry( 0.25,32, 32 );
+        var sofaMaterial = new THREE.MeshPhongMaterial( {color: 0x808080} );
+        var sofa = new THREE.Mesh( sofaGeometry, sofaMaterial );
+        sofa.scale.z = 5;
+        sofa.scale.x = 1;
+        sofa.scale.y = 5;
+        sofa.position.set( -2.3, 0.15, 0.15 );
+        scene.add( sofa );
+
+
+        //ソファーの肘置き
+        var sofaGeometry = new THREE.BoxGeometry(1, 0.65, 0.5);
+        var sofaMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513});
+        var sofa = new THREE.Mesh(sofaGeometry, sofaMaterial);
+        sofa.position.set(-1.9, 0.1, 1.1);
+        scene.add(sofa);
+
+
+        var sofaGeometry = new THREE.BoxGeometry(1, 0.65, 0.5);
+        var sofaMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513});
+        var sofa = new THREE.Mesh(sofaGeometry, sofaMaterial);
+        sofa.position.set(-1.9, 0.1, -0.8);
+        scene.add(sofa);
+
+        //6面分のテクスチャー読み込み
+        var materials = [
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("wood-texture_00019.jpg")}),
+        ];
+ 
+        var material = new THREE.MeshFaceMaterial(materials); // マテリアルをセット
+
+
+
+
+        //全体のオブジェクト
+        const all = new THREE.Group();
+        all.add(plane);//平面を追加
+        all.add(desk); //机を追加
+        all.add(sofa);//ソファーを追加
+        all.position.set(0,0,0);//全体グループの原点の位置
+        scene.add(all);
+
+
+        update();
+
+
+        // 毎フレーム時に実行されるループイベントです
+        function update() {
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(update);
+        }
+      }
+    </script>
+</body>
+</html>
+
