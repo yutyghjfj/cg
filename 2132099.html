@@ -53,20 +53,11 @@
         const axisHelper = new THREE.AxisHelper(5); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
 
-           //6面分のテクスチャー読み込み
-        var materials = [
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/wood-texture_00019.jpg")}),
-        ];
- 
-        var material = new THREE.MeshFaceMaterial(materials); // マテリアルをセット
-
-
+        // テクスチャー読み込み
+      var textureLoader = new THREE.TextureLoader();
+      var texture = textureLoader.load("cit.png");
+      var mat = new THREE.MeshPhongMaterial();
+      mat.map = texture;
 
         // 平面を作成
         var planeGeometry = new THREE.PlaneGeometry(5,5,10,10); //縦、横、分割数、分割数
