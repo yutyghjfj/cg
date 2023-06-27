@@ -76,7 +76,7 @@
         var deskGeometry = new THREE.CylinderGeometry( 0.125, 0.125, 1, 32 );
         上の底面の半径、下の底面の半径、高さ、何角柱か
         var deskMaterial = new THREE.MeshPhongMaterial( {color: 0xffffff} );
-       //var desk = new THREE.Mesh( deskGeometry, deskMaterial );
+        var desk = new THREE.Mesh( deskGeometry, deskMaterial );
         desk.position.set( -0.75, 0.5, -0.8 );
         scene.add( desk );
 
