@@ -53,12 +53,6 @@
         const axisHelper = new THREE.AxisHelper(5); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
 
-        // テクスチャー読み込み
-      var textureLoader = new THREE.TextureLoader();
-      var texture = textureLoader.load("img/wood-texture_00019.jpg");
-      var mat = new THREE.MeshPhongMaterial();
-      mat.map = texture;
-
         // 平面を作成
         var planeGeometry = new THREE.PlaneGeometry(5,5,10,10); //縦、横、分割数、分割数
         var planeMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
