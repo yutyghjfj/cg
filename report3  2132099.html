@@ -119,6 +119,22 @@
         desk.position.set( 0.75, 0.5, 0.8 );
         scene.add( desk );
 
+        var deskRotation = 0.0;
+
+        mvPushMatrix();
+        mvRotate(deskRotation, [1, 0, 1]);
+
+        mvPopMatrix();
+        
+        var currentTime = Date.now();
+        if (lastdeskUpdateTime) {
+          var delta = currentTime - lastdeskUpdateTime;
+
+          deskRotation += (30 * delta) / 1000.0;
+        }
+
+          lastdeskUpdateTime = currentTime;
+
         var deskXOffset = 0.0;
         var deskYOffset = 0.0;
         var deskZOffset = 0.0;
