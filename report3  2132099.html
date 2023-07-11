@@ -29,8 +29,13 @@
       // カメラを作成
       const camera = new THREE.PerspectiveCamera(45, width / height);
 
-      // 星屑を作成します (カメラの動きをわかりやすくするため)
       createStarField();
+
+      //太陽を作成
+      var sun = new THREE.SphereGeometry(0.8,32,32);
+      var material new THREE.MeshphongMaterial({color:0xffffff});
+      var sun = THREE.Mesh(sun,material);
+      sun.position.set(0,0,0);
 
       function createStarField() {
         // 頂点情報を格納する配列
@@ -42,9 +47,9 @@
         const LENGTH = 1000;
 
         for (let i = 0; i < LENGTH; i++) {
-          const x = SIZE * (Math.random() - 0.5);
-          const y = SIZE * (Math.random() - 0.5);
-          const z = SIZE * (Math.random() - 0.5);
+          const x = SIZE * (Math.random() - 0.25);
+          const y = SIZE * (Math.random() - 0.25);
+          const z = SIZE * (Math.random() - 0.25);
 
           vertices.push(x, y, z);
         }
@@ -70,7 +75,7 @@
 
       // 毎フレーム時に実行されるループイベントです
       function tick() {
-        rot += 1;
+        rot += 3;
 
         // ラジアンに変換する
         const radian = (rot * Math.PI) / 180;
