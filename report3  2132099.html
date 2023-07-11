@@ -12,8 +12,8 @@
       import * as THREE from "three";
 
       // サイズを指定
-      const width = 960;
-      const height = 540;
+      const width = 900;
+      const height = 600;
       let rot = 0; // 角度
 
       // レンダラーを作成
@@ -29,6 +29,7 @@
       // カメラを作成
       const camera = new THREE.PerspectiveCamera(45, width / height);
 
+      // 星屑を作成します (カメラの動きをわかりやすくするため)
       createStarField();
 
       function createStarField() {
@@ -55,9 +56,9 @@
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
-          size: 20,
+          size: 10,
           // 色
-          color: 0xFFFFFF,
+          color: 0xffffff,
         });
 
         // 物体を作成
