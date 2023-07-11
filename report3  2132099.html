@@ -32,9 +32,9 @@
       createStarField();
 
       //太陽を作成
-      var sunGeometry = new THREE.SphereGeometry(0.8,32,32);
-      var sunmaterial = new THREE.MeshphongMaterial({color:0xFF0000});
-      var sun = new THREE.Mesh(sun,material);
+      const sunGeometry = new THREE.SphereGeometry(0.8,32,32);
+      const sunmaterial = new THREE.MeshphongMaterial({color:0xFF0000});
+      const sun = new THREE.Mesh(sun,material);
       sun.position.set(0,0,0);
       scene.add(sun);
 
