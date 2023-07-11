@@ -32,10 +32,11 @@
       createStarField();
 
       //太陽を作成
-      var sun = new THREE.SphereGeometry(0.8,32,32);
-      var material new THREE.MeshphongMaterial({color:0xffffff});
-      var sun = THREE.Mesh(sun,material);
+      var sunGeometry = new THREE.SphereGeometry(0.8,32,32);
+      var sunmaterial = new THREE.MeshphongMaterial({color:0xFF0000});
+      var sun = new THREE.Mesh(sun,material);
       sun.position.set(0,0,0);
+      scene.add(sun);
 
       function createStarField() {
         // 頂点情報を格納する配列
