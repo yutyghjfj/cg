@@ -119,12 +119,32 @@
         desk.position.set( 0.75, 0.5, 0.8 );
         scene.add( desk );
 
+        var deskXOffset = 0.0;
+        var deskYOffset = 0.0;
+        var deskZOffset = 0.0;
+
+        var xIncValue = 0.2;
+        var yIncValue = -0.4;
+        var zIncValue = 0.3;
+
+        deskXOffset += xIncValue * ((30 * delta) / 1000.0);
+        deskYOffset += yIncValue * ((30 * delta) / 1000.0);
+        deskZOffset += zIncValue * ((30 * delta) / 1000.0);
+
+        if (Math.abs(deskYOffset) > 2.5) {
+          xIncValue = -xIncValue;
+          yIncValue = -yIncValue;
+          zIncValue = -zIncValue;
+         }
+
 
         //全体のオブジェクト
         const all = new THREE.Group();
         all.add(plane);//平面を追加
         all.add(desk); //机を追加
         all.position.set(0,0,0);//全体グループの原点の位置
+       
+        mvTranslate([deskXOffset, deskYOffset, deskZOffset]);
         scene.add(all);
 
 
