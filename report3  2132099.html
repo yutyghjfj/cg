@@ -31,13 +31,6 @@
 
       createStarField();
 
-      //太陽を作成
-      const sunGeometry = new THREE.SphereGeometry(0.8,32,32);
-      const sunmaterial = new THREE.MeshphongMaterial({color:0xFF0000});
-      const sun = new THREE.Mesh(sun,material);
-      sun.position.set(0,0,0);
-      scene.add(sun);
-
       function createStarField() {
         // 頂点情報を格納する配列
         const vertices = [];
@@ -62,7 +55,7 @@
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
-          size: 10,
+          size += (30 * delta) / 1000.0;
           // 色
           color: 0xffffff,
         });
